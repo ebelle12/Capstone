@@ -1,4 +1,4 @@
-const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp/api";
+const API_URL = "https://localhost3000/api";
 
 export async function getBooks() {
     try {
@@ -11,11 +11,11 @@ export async function getBooks() {
 
 }
 
-export async function getBook(bookId) {
+export async function getProducts(productId) {
     try {
-        const response = await fetch(`${API_URL}/books/${bookId}`)
+        const response = await fetch(`${API_URL}/products/${bookId}`)
         const results = await response.json();
-        return results.book;
+        return results.products;
     } catch (error) {
         console.error(error)
     }
