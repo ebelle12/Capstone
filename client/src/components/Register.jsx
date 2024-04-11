@@ -50,7 +50,7 @@ export default function Register() {
             console.log("json", result);
 
             if (result.token) {
-                setToken(result.token);
+                localStorage.setItem("token", result.token);
             } else {
 
                 setError(result.message);
