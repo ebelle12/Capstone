@@ -6,11 +6,12 @@
 // }
 
 import { useState } from "react";
+import {Link} from "react-router-dom";
 
-const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+const API_URL = "https://localhost:/3000/api";
 
 
-export default function Login({ setToken }) {
+export default function Login() {
     // used to display the error message later
     const [error, setError] = useState("");
 
@@ -35,7 +36,7 @@ export default function Login({ setToken }) {
             console.log("login.json:", result);
 
             if (result.token) {
-                setToken(result.token);
+                localStorage.setItem("token", result.token);
             } else {
 
                 setError(result.message);
@@ -59,6 +60,9 @@ export default function Login({ setToken }) {
                 <label htmlFor="pssword">
                     Password: <input type="password" name="password" />
                 </label>
+                <br />
+                <Link to="/register">Click here Register</Link>
+
                 <button type="submit">Log In</button>
             </form>
         </>

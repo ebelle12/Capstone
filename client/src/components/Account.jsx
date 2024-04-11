@@ -4,7 +4,7 @@
 //         <div>Account</div>
 //     )
 // }
-const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+const API_URL = "https://localhost:3000/api";
 import React, { useState, useEffect } from 'react';
 import { TokenContext } from '../App';
 const Account = ({ loggedInUserId }) => {
@@ -56,14 +56,14 @@ const Account = ({ loggedInUserId }) => {
                 <div>
                     <p>Username: {accountData.username}</p>
                     <p>Email: {accountData.email}</p>
-                    <h3>Checked Out Books:</h3>
+                    <h3>Purchased Books:</h3>
                     <ul>
-                        {accountData.checkedOutBooks.length > 0 ? (
-                            accountData.checkedOutBooks.map(book => (
+                        {accountData.purchasedBooks.length > 0 ? (
+                            accountData.purchasedBooks.map(book => (
                                 <li key={book.id}>{book.title}</li>
                             ))
                         ) : (
-                            <p>No books checked out.</p>
+                            <p>No books purchased.</p>
                         )}
                     </ul>
                 </div>

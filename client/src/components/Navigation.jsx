@@ -3,21 +3,38 @@ import { Link } from "react-router-dom"
 
 
 export default function Navigation() {
-    return (
-        <ul>
+    const isLoggedIn = () =>{
+        
+    }
 
-            <li>
-                <Link to="/account">Account</Link>
-            </li>
-            <li>
-                <Link to="/books">Books</Link>
-            </li>
-            <li>
-                <Link to="/login">Login</Link>
-            </li>
-            <li>
-                <Link to="/register">Register</Link>
-            </li>
-        </ul>
+    return (
+        <nav>
+            <ul>
+                <li>
+                    <Link to="/books">Books</Link>
+                </li>
+                {
+
+                    isLoggedIn() ? (
+                        <li>
+                            <Link to="/account">Account</Link>
+                        </li>
+
+                    ) : (
+                        <>
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+                            <li>
+                                <Link to="/register">Register</Link>
+                            </li>
+                        </>
+                    )
+                }
+
+
+
+            </ul>
+        </nav>
     )
 }
