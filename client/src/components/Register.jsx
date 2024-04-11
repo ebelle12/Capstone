@@ -5,7 +5,7 @@
 //     )
 // }
 import { useState } from "react";
-const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+const API_URL = "https:/localhost:3000/api";
 export default function Register() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

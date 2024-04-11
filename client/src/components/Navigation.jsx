@@ -4,8 +4,23 @@ import { Link } from "react-router-dom"
 
 export default function Navigation() {
     const isLoggedIn = () =>{
-        
+        const token = localStorage.getItem("token");
+        return token && isTokenValid(token);
     }
+
+    const isTokenValid =(token) =>{
+        try{
+            const decoded = JSON.parse(atob(token.split(".")[1]))
+        } catch(e){
+            return false
+        }
+        const now = Date.now().valueOf()/1000
+        if (typeof decoded.exp!=="undefined" && decoded.exp < now){
+            return false
+        }
+        return true
+    }
+
 
     return (
         <nav>
