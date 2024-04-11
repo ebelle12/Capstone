@@ -8,7 +8,7 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
 
-const API_URL = "https://localhost:/3000/api";
+const API_URL = "http://localhost:3000/api";
 
 
 export default function Login() {
@@ -24,7 +24,7 @@ export default function Login() {
         const body = Object.fromEntries(formData.entries());
         console.log("body:", body);
         try {
-            const response = await fetch(`${API_URL}/users/login`, {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

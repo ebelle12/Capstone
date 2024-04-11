@@ -5,10 +5,12 @@
 //     )
 // }
 import { useState } from "react";
-const API_URL = "https:/localhost:3000/api";
+const API_URL = "http://localhost:3000/api";
 export default function Register() {
     const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
 
     const usernameHandler = (e) => {
@@ -29,16 +31,16 @@ export default function Register() {
                 const body = Object.fromEntries(formData.entries());
                 */
         const body = {
-            email: username,
+            email: email,
+            username: username,
             password: password,
-            lastname: "Smith",
-            firstname: "John"
+            name: name
         }
         console.log("body:", body);
         console.log("reg data:", body);
 
         try {
-            const response = await fetch(`${API_URL}/users/register`, {
+            const response = await fetch(`${API_URL}/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -75,6 +77,21 @@ export default function Register() {
                     />
                 </label>
                 <label>
+                    Email:{" "}
+                    <input
+                        value={username}
+                        onChange={usernameHandler}
+                    />
+                </label>
+                <label>
+                    Name:{" "}
+                    <input
+                        value={username}
+                        onChange={usernameHandler}
+                    />
+                </label>
+
+                <label>
                     Password:{" "}
                     <input
                         type="password"
@@ -83,7 +100,7 @@ export default function Register() {
                     />
 
                 </label>
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </>
     );

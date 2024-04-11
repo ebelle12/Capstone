@@ -21,7 +21,7 @@ export async function getProducts() {
     }
 }
 
-export async function getSingleProducts() {
+export async function getSingleProduct() {
     try {
         const response = await fetch(`${API_URL}/products`);
         const result = await response.json();

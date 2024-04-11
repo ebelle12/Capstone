@@ -11,26 +11,26 @@ import SingleBook from './components/SingleBook';
 //import TokenContext from './TokenContext';
 export const TokenContext = React.createContext();
 function App() {
-  
+
   return (
     <>
       <div className='container'>
         <header />
 
-        <h1><img id='logo-image' src={bookLogo} />Library App</h1>
+        <h1><img id='logo-image' src={bookLogo} height="100px"/>The Literary Lounge</h1>
 
-       
-          <BrowserRouter>
-            <Navigation />
-            <Routes>
-              <Route path="/account" element={<Account />} />
-              <Route path="/books" element={<Books />} />
-              <Route path="/books/:bookId" element={<SingleBook />}  />
-              <Route path="/login" element={<Login  />} />
-              <Route path="/register" element={<Register />} /> 
-            </Routes>
-          </BrowserRouter>
-        
+
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/account" element={<Account />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/books/:bookId" element={<SingleBook />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </BrowserRouter>
+
       </div>
 
 
