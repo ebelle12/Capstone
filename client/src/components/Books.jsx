@@ -17,7 +17,12 @@ export default function Books() {
             {books.map(book => {
                 return (
                     <div key={book.id}>
-                        <Link to={`/books/${book.id}`}>{book.title}</Link>
+                        <Link to={`/books/${book.id}`}>
+                            <img src={book.photos} alt={`cover art for ${book.name}`} />
+                            {book.name}
+                            <p>{book.price}</p>
+
+                        </Link>
                     </div>
                 )
             })}
