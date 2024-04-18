@@ -62,7 +62,7 @@ const checkout = async (user_id) => {
 }
 const createUser = async ({ username, password, name, email, admin }) => {
   const SQL = `
-    INSERT INTO users(username, password,name,email,admin) VALUES($1, $2, $3, $4, $5) RETURNING *
+    INSERT INTO users( username, password,name,email,admin) VALUES($1, $2, $3, $4, $5) RETURNING *
   `;
   const response = await client.query(SQL, [username, await bcrypt.hash(password, 5), name, email, admin]);
   console.log(response);
@@ -119,23 +119,29 @@ const removeFromCart = async ({ user_id, product_id }) => {
   await client.query(SQL, [user_id, product_id]);
 };
 //
-const authenticate = async ({ username, password }) => {
+const authenticate = async (data) => {
   const SQL = `
     SELECT id, password, username 
     FROM users 
     WHERE username=$1;
   `;
-  console.log("AUTH:", username)
-  const response = await client.query(SQL, [username]);
+  console.log("AUTH:", data.username)
+  const response = await client.query(SQL, [data.username]);
   console.log("RESP:", response);
-  if ((!response.rows.length || await bcrypt.compare(password, response.rows[0].password)) === false) {
+  if ((!response.rows.length || await bcrypt.compare(data.password, response.rows[0].password)) === false) {
+    const error = Error('not authorized');
+    error.status = 401;
+    throw error;
+  }
+  if (response.rows[0]) {
+    const token = await jwt.sign({ id: response.rows[0].id }, JWT);
+    return { token: token };
+  } else {
     const error = Error('not authorized');
     error.status = 401;
     throw error;
   }
 
-  const token = await jwt.sign({ id: response.rows[0].id }, JWT);
-  return { token: token };
 };
 
 const isLoggedIn = async (req, res, next) => {
@@ -220,7 +226,6 @@ const fetchProducts = async () => {
 
 
   const response = await client.query(SQL);
-  console.log("RESP", response);
   return response.rows;
 };
 const fetchCarts = async () => {

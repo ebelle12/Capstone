@@ -2,19 +2,22 @@
 import { Link } from "react-router-dom"
 
 
-export default function Navigation() {
+export default function Navigation(props) {
     const isLoggedIn = () => {
         const token = localStorage.getItem("token");
+        if (token) { props.setUser(true) } // TODO: Could do this cleaner
         return token && isTokenValid(token);
     }
     const logOut = () => {
-
-        localStorage.removeItem("token")
+        localStorage.removeItem("token");
+        props.setUser(false);
     }
 
+    // TODO: send token to backend for validation
     const isTokenValid = (token) => {
+        let decoded = undefined
         try {
-            const decoded = JSON.parse(atob(token.split(".")[1]))
+            decoded = JSON.parse(atob(token.split(".")[1]))
         } catch (e) {
             return false
         }
@@ -32,28 +35,30 @@ export default function Navigation() {
                 <li>
                     <Link to="/books">Books</Link>
                 </li>
-                {
+                {props.user && isLoggedIn() ? (
+                    <>
+                        <li>
+                            <Link to="/account">Account</Link>
+                        </li>
 
-                    isLoggedIn() ? (
-                        <>
-                            <li>
-                                <Link to="/account">Account</Link>
-                            </li>
-
-                            <li>
-                                <a href="#" onClick={logOut}>Logout</a>
-                            </li>
-                        </>
-                    ) : (
-                        <>
-                            <li>
-                                <Link to="/login">Login</Link>
-                            </li>
-                            <li>
-                                <Link to="/register">Register</Link>
-                            </li>
-                        </>
-                    )
+                        <li>
+                            <a href="#" onClick={logOut}>Logout</a>
+                        </li>
+                        <li>
+                            <Link to="/checkout">Checkout</Link>
+                            <span>{props.cartItems}</span>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="/register">Register</Link>
+                        </li>
+                    </>
+                )
                 }
 
 

@@ -7,20 +7,22 @@
 import { useState } from "react";
 const API_URL = "http://localhost:3000/api";
 export default function Register() {
-    const [username, setUsername] = useState("");
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        name: '',
+        password: ''
+    })
     const [error, setError] = useState(null);
 
-    const usernameHandler = (e) => {
-        console.log("emailHandler:", e.target.value);
-        setUsername(e.target.value);
+    const handleChange = (e) => {
+        const { name, value } = event.target;
+        setFormData(prevState => ({
+            ...prevState, // The ... is the spread operator. Creates a new object with all the current state's properties.
+            [name]: value
+        }));
     }
-    const passwordHandler = (e) => {
-        console.log("password:", e.target.value);
-        setPassword(e.target.value);
-    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         /*
@@ -31,10 +33,7 @@ export default function Register() {
                 const body = Object.fromEntries(formData.entries());
                 */
         const body = {
-            email: email,
-            username: username,
-            password: password,
-            name: name
+            ...formData
         }
         console.log("body:", body);
         console.log("reg data:", body);
@@ -72,31 +71,35 @@ export default function Register() {
                 <label>
                     Username:{" "}
                     <input
-                        value={username}
-                        onChange={usernameHandler}
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
                     />
                 </label>
                 <label>
                     Email:{" "}
                     <input
-                        value={username}
-                        onChange={usernameHandler}
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                     />
                 </label>
                 <label>
                     Name:{" "}
                     <input
-                        value={username}
-                        onChange={usernameHandler}
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                     />
                 </label>
 
                 <label>
                     Password:{" "}
                     <input
+                        name="password"
                         type="password"
-                        value={password}
-                        onChange={passwordHandler}
+                        value={formData.password}
+                        onChange={handleChange}
                     />
 
                 </label>

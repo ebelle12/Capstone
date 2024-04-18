@@ -1,0 +1,28 @@
+{
+    "books": [
+        {
+            "id": 1,
+            "name": "Book 1",
+            "description": "a book",
+            "photos": "na",
+            "price": "99.99",
+            "inventory": 2
+        },
+        {
+            "id": 2,
+            "name": "Book 2",
+            "description": "another book",
+            "photos": "na",
+            "price": "22.70",
+            "inventory": 0
+        },
+        {
+            "id": 3,
+            "name": "Book 3",
+            "description": "book...",
+            "photos": "na",
+            "price": "1.99",
+            "inventory": 1
+        }
+    ]
+}

@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 const API_URL = "http://localhost:3000/api";
 
 
-export default function Login() {
+export default function Login(props) {
     // used to display the error message later
     const [error, setError] = useState("");
 
@@ -37,6 +37,7 @@ export default function Login() {
 
             if (result.token) {
                 localStorage.setItem("token", result.token);
+                props.setUser(true)
             } else {
 
                 setError(result.message);
@@ -53,12 +54,12 @@ export default function Login() {
             }
             {error && <h2>{error}</h2>}
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">
-                    Email: <input type="email" name="email" />
+                <label htmlFor="username">
+                    Username: <input type="text" name="username" id="username" />
                 </label>
                 <br />
-                <label htmlFor="pssword">
-                    Password: <input type="password" name="password" />
+                <label htmlFor="password">
+                    Password: <input type="password" name="password" id="password" />
                 </label>
                 <br />
                 <Link to="/register">Click here Register</Link>

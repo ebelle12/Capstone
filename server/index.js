@@ -13,7 +13,7 @@
 // *deleteProduct // admin only
 // *checkout ---- which will delete*
 
-
+const dummyData = require('./dummyData.json')
 const pg = require('pg')
 
 
@@ -143,6 +143,7 @@ app.post('/api/auth/register', async (req, res, next) => {
 });
 
 app.post('/api/auth/login', async (req, res, next) => {
+    console.log(req.body)
     try {
         res.send(await authenticate(req.body));
     }
@@ -239,7 +240,23 @@ const init = async () => {
     console.log('tables created');
     // createUser({ username: "testerb", password: "Test1234" })
     // createProduct({ name: "Shoes", description: "Awesome shoes", photos: "shoe.jpg", price: 50, inventory: 100 });
-    console.log('data seeded');
+    // try {
+    //     dummyData.books.forEach(async (book) => await createProduct(book.name, book.description, book.photos, book.price, book.inventory))
+
+    // }
+    // catch (error) {
+    //     if (error.code === "23505") {
+    //         console.log("duplicate key")
+    //     } else {
+    //         console.log("other database error")
+    //     }
+    // }
+
+
+    console.log("created dummy data")
+    books = await fetchProducts();
+
+
     const port = process.env.PORT || 3000;
     app.listen(port, () => console.log(`listening on port ${port}`));
 };
