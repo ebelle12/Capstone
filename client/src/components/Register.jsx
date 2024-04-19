@@ -16,7 +16,7 @@ export default function Register() {
     const [error, setError] = useState(null);
 
     const handleChange = (e) => {
-        const { name, value } = event.target;
+        const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState, // The ... is the spread operator. Creates a new object with all the current state's properties.
             [name]: value

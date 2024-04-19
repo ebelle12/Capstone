@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 export default function Navigation(props) {
     const isLoggedIn = () => {
         const token = localStorage.getItem("token");
-        if (token) { props.setUser(true) } // TODO: Could do this cleaner
+        if (token) { props.setUser(true) } // TODO: I can make this a litle cleaner ask in osp
         return token && isTokenValid(token);
     }
     const logOut = () => {
