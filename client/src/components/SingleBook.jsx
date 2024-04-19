@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 
-export default function SingleBook() {
+export default function SingleBook(props) {
     const [amount, setAmount] = useState({ "amount": 1 })
     const { bookId } = useParams()
     const API_URL = "http://localhost:3000/"
@@ -30,7 +30,7 @@ export default function SingleBook() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ ...book, amount })
+            body: JSON.stringify({ ...book, amount, "token": localStorage.getItem("token") })
         })
 
     }
@@ -41,14 +41,15 @@ export default function SingleBook() {
             <p>{book.description}</p>
             <p>{book.price}</p>
             <p>{book.inventory}</p>
-            <form onSubmit={handleSubmit}>
+            { props.user && (
+                <form onSubmit={handleSubmit}>
                 <label htmlFor="amount">
                     <input type="number" name="amount" id="amount" value={amount.amount} onChange={handleChange} />
                 </label>
 
                 <button type="submit">Add to cart</button>
             </form>
-
+            )}
         </>
     )
 

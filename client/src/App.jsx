@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/account" element={<Account />} />
             <Route path="/books" element={<Books />} />
-            <Route path="/books/:bookId" element={<SingleBook />} />
+            <Route path="/books/:bookId" element={<SingleBook user={user} />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/checkout" element={<Checkout />} />
