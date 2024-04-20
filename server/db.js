@@ -238,7 +238,7 @@ const fetchCarts = async () => {
 
 const fetchCartProducts = async (id) => {
   const SQL = `
-    SELECT * FROM cart_products where id = $1
+    SELECT * FROM cart_products cp INNER JOIN products p ON cp.product_id = p.id where cp.user_id = $1
   `;
   const response = await client.query(SQL, [id]);
   return response.rows;
