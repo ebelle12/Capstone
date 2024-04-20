@@ -5,18 +5,19 @@ import { useState, useEffect } from "react"
 export default function SingleBook(props) {
     const [amount, setAmount] = useState({ "amount": 1 })
     const { bookId } = useParams()
-    const API_URL = "http://localhost:3000/"
+    const API_URL = "http://localhost:3000/api"
     const [book, setBook] = useState({})
+
     useEffect(() => {
         async function loadBook() {
-            await fetch(API_URL + `api/products/${bookId}`)
+            fetch(API_URL + `/products/${bookId}`)
                 .then(response => response.json())
                 .then(result => setBook(result))
                 .catch((error) => {
                     console.error('Error: ' + error)
                 })
         }
-        loadBook;
+        loadBook();
     })
 
     async function handleChange(event) {
@@ -25,15 +26,19 @@ export default function SingleBook(props) {
     }
 
     async function handleSubmit(event) {
-        await fetch(API_URL + "/api/users/cart_products", {
+        event.preventDefault();
+
+        console.log({ ...book, ...amount, "token": localStorage.getItem("token") })
+
+        await fetch(API_URL + "/users/cart_products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ ...book, amount, "token": localStorage.getItem("token") })
+            body: JSON.stringify({ ...book, "product_id": book.id, ...amount, "token": localStorage.getItem("token") })
         })
-
     }
+
     return (
         <>
             <h1>{book.name}</h1>
@@ -41,14 +46,14 @@ export default function SingleBook(props) {
             <p>{book.description}</p>
             <p>{book.price}</p>
             <p>{book.inventory}</p>
-            { props.user && (
+            {props.user && (
                 <form onSubmit={handleSubmit}>
-                <label htmlFor="amount">
-                    <input type="number" name="amount" id="amount" value={amount.amount} onChange={handleChange} />
-                </label>
+                    <label htmlFor="amount">
+                        <input type="number" name="amount" id="amount" value={amount.amount} onChange={handleChange} />
+                    </label>
 
-                <button type="submit">Add to cart</button>
-            </form>
+                    <button type="submit">Add to cart</button>
+                </form>
             )}
         </>
     )
