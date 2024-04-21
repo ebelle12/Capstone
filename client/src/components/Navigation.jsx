@@ -1,5 +1,6 @@
 /* TODO - add your code to create a functional React component that renders a navigation bar for the different views in your single page application. You may consider conditionally rendering some options - for example 'Login' should be available if someone has not logged in yet. */
 import { Link } from "react-router-dom"
+import bookLogo from '../assets/books.jpg'
 
 
 export default function Navigation(props) {
@@ -31,31 +32,35 @@ export default function Navigation(props) {
 
     return (
         <nav>
+            <div>
+                <img id='logo-image' src={bookLogo} height="100px" />
+                <h1>The Literary Lounge</h1>
+            </div>
             <ul>
                 <li>
-                    <Link to="/books">Books</Link>
+                    <Link className="a" to="/books">Books</Link>
                 </li>
                 {props.user && isLoggedIn() ? (
                     <>
                         <li>
-                            <Link to="/account">Account</Link>
+                            <Link className="a" to="/account">Account</Link>
                         </li>
 
                         <li>
                             <a href="#" onClick={logOut}>Logout</a>
                         </li>
                         <li>
-                            <Link to="/checkout">Checkout</Link>
+                            <Link className="a" to="/checkout">Checkout</Link>
                             <span>{props.cartItems}</span>
                         </li>
                     </>
                 ) : (
                     <>
                         <li>
-                            <Link to="/login">Login</Link>
+                            <Link className="a" to="/login">Login</Link>
                         </li>
                         <li>
-                            <Link to="/register">Register</Link>
+                            <Link className="a" to="/register">Register</Link>
                         </li>
                     </>
                 )

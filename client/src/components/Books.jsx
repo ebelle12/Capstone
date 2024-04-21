@@ -17,17 +17,19 @@ export default function Books() {
 
     return (
         <>
-            <div>Books</div>
+            <div className="title">Books</div>
             {books.map(book => {
                 return (
-                    <div key={book.id}>
-                        <Link to={`/books/${book.id}`}>
+                    <Link key={book.id} className="a" to={`/books/${book.id}`}>
+                        <div className="book">
                             <img src={book.photos} alt={`cover art for ${book.name}`} />
-                            {book.name}
-                            <p>{book.price}</p>
-
-                        </Link>
-                    </div>
+                            <div>
+                                <p>Name: {book.name}</p>
+                                <p>Amount left: {book.inventory}</p>
+                            </div>
+                            <p>${book.price}</p>
+                        </div>
+                    </Link>
                 )
             })}
         </>

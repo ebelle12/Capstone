@@ -32,7 +32,7 @@ export default function Checkout() {
                     <div key={cartItem.id}>
                         <img src={cartItem.photos} alt={`cover art for ${cartItem.name}`} />
                         <p>{cartItem.name}</p>
-                        <Link to={`/books/${cartItem.id}`}>Go to item page</Link>
+                        <Link className="a" to={`/books/${cartItem.id}`}>Go to item page</Link>
                         <p>{cartItem.price}</p>
                         <input type="number" name={i} id="amount" value={cartItem.amount} onChange={handleChange} />
                     </div>
