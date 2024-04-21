@@ -2,26 +2,26 @@
     "books": [
         {
             "id": 1,
-            "name": "Book 1",
-            "description": "a book",
-            "photos": "na",
-            "price": "99.99",
+            "name": "SQL: 3 books 1 - The Ultimate Beginner",
+            "description": "Intermediate & Expert Guides To Master SQL Programming Quickly with Practical Exercises",
+            "photos": "https://m.media-amazon.com/images/I/61IvZ9eG91L._AC_UF1000,1000_QL80_.jpg",
+            "price": "25.69",
             "inventory": 2
         },
         {
             "id": 2,
-            "name": "Book 2",
-            "description": "another book",
-            "photos": "na",
-            "price": "22.70",
+            "name": "React: Quickstart",
+            "description": "Step-By-Step Guide To Learning React Javascript Library (React.js, Reactjs, Learning React JS, React Javascript, React Programming)",
+            "photos": "https://m.media-amazon.com/images/I/61vg+0-1yGL._AC_UF1000,1000_QL80_.jpg",
+            "price": "13.38",
             "inventory": 0
         },
         {
             "id": 3,
-            "name": "Book 3",
-            "description": "book...",
-            "photos": "na",
-            "price": "1.99",
+            "name": "Beginning JavaScript",
+            "description": "Covers not just how JavaScript is used in the browser, but how it is used on the server side and with frameworks.",
+            "photos": "https://media.springernature.com/full/springer-static/cover-hires/book/978-1-4842-4395-4",
+            "price": "35.03",
             "inventory": 1
         }
     ]

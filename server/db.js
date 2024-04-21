@@ -22,7 +22,7 @@ CREATE TABLE users(
     );
   CREATE TABLE products(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(20) UNIQUE NOT NULL,
+    name VARCHAR(100) UNIQUE NOT NULL,
     description VARCHAR(255) NOT NULL,
     photos VARCHAR(4000),
     price FLOAT NOT NULL,
