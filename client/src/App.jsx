@@ -13,23 +13,35 @@ import './App.css';
 export const TokenContext = React.createContext();
 function App() {
   const [user, setUser] = useState(false);
+  const [cartItemCounter, setCartItemCounter] = useState(0);
+
+  // useEffect(() => {
+  //   async function fetchCartItemAmount() {
+  //     fetch(`${API_URL}/user/cart/${localStorage.getItem("token")}`)
+  //               .then(response => response.json())
+  //               .then(result => setCartItemCounter(result.cartItems.length))
+  //               .catch((error) => console.error("Error:", error))
+  //   }
+  //   if (user) {
+  //     fetchCartItemAmount();
+  //   }})
 
   return (
     <>
       <div className='container'>
         <BrowserRouter>
-          <Navigation cartItems="2" setUser={setUser} user={user} />
+          <Navigation cartItems={cartItemCounter} setUser={setUser} user={user} />
           <main>
             <Routes>
               <Route path="/account" element={<Account />} />
               <Route path="/books" element={<Books />} />
-              <Route path="/books/:bookId" element={<SingleBook user={user} />} />
+              <Route path="/books/:bookId" element={<SingleBook user={user} setCartItems={setCartItemCounter} />} />
               <Route path="/login" element={<Login setUser={setUser} />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout" element={<Checkout setCartItems={setCartItemCounter} />} />
               <Route path="/" element={<Books />} />
             </Routes>
-          
+
           </main>
         </BrowserRouter>
       </div>

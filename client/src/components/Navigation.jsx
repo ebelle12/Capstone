@@ -47,11 +47,10 @@ export default function Navigation(props) {
                         </li>
 
                         <li>
-                            <a href="#" onClick={logOut}>Logout</a>
+                            <a className="a" href="#" onClick={logOut}>Logout</a>
                         </li>
                         <li>
-                            <Link className="a" to="/checkout">Checkout</Link>
-                            <span>{props.cartItems}</span>
+                            <Link className="a" to="/checkout">Checkout<span className="badge">{props.cartItems}</span></Link>
                         </li>
                     </>
                 ) : (

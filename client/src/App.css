@@ -16,6 +16,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  background-color: rgb(216, 79, 0);
 }
 
 nav div {
@@ -61,12 +62,27 @@ main {
 
 .book {
   display: flex;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 15px;
   border: 1px solid white;
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
   padding-right: 20px;
+  background-color: rgba(247, 206, 152, 0.288);
+}
+
+.book:hover {
+  background-color: rgba(247, 206, 152, 0.418);
+}
+
+#book {
+  text-decoration: none;
+  color: white;
+}
+
+.book p {
+  margin: 0;
 }
 
 .book img {
@@ -77,4 +93,40 @@ main {
 .title {
   font-size: 2em;
   text-align: center;
+}
+
+.form-container {
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgb(216, 79, 0);
+}
+
+.form-container h2 {
+  margin: 0 0 20px 0;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 20px 0;
+}
+
+.form input {
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+}
+
+.badge {
+  background-color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  margin-left: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.301);
+  border-radius: 5px;
+
 }

@@ -1,10 +1,7 @@
-/* TODO - add your code to create a functional React component that renders a registration form */
-// export default function Register() {
-//     return (
-//         <div>Register</div>
-//     )
-// }
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 const API_URL = "http://localhost:3000/api";
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -14,6 +11,7 @@ export default function Register() {
         password: ''
     })
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,13 +23,7 @@ export default function Register() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        /*
-                const form = e.target;
-                console.table(e);
-                console.table(form)
-                const formData = new FormData(e.target);
-                const body = Object.fromEntries(formData.entries());
-                */
+
         const body = {
             ...formData
         }
@@ -52,6 +44,7 @@ export default function Register() {
 
             if (result.token) {
                 localStorage.setItem("token", result.token);
+                navigate("/login")
             } else {
 
                 setError(result.message);
@@ -64,45 +57,41 @@ export default function Register() {
 
     return (
         <>
-            <h2>Register Here</h2>
             {error && <p>{error}</p>}
 
-            <form method="post" onSubmit={handleSubmit}>
-                <label>
-                    Username:{" "}
+            <form className="form-container" method="post" onSubmit={handleSubmit}>
+                <h2 className="title">Register</h2>
+                <div className="form">
+                    <label for="username">Username:{" "}</label>
                     <input
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Email:{" "}
+                            id="username"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                        />
+                    <label for="email">Email:{" "}</label>
                     <input
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Name:{" "}
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                    <label for="name">Name:{" "}</label>
                     <input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                </label>
-
-                <label>
-                    Password:{" "}
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                        />
+                    <label for="password">Password:{" "}</label>
                     <input
-                        name="password"
-                        type="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-
-                </label>
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                        />
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </>

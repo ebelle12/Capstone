@@ -1,12 +1,5 @@
-/* TODO - add your code to create a functional React component that renders a login form */
-// export default function Login() {
-//     return (
-//         <div>Login</div>
-//     )
-// }
-
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:3000/api";
 
@@ -14,11 +7,10 @@ const API_URL = "http://localhost:3000/api";
 export default function Login(props) {
     // used to display the error message later
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-
-
 
         const formData = new FormData(evt.target);
         const body = Object.fromEntries(formData.entries());
@@ -38,6 +30,7 @@ export default function Login(props) {
             if (result.token) {
                 localStorage.setItem("token", result.token);
                 props.setUser(true)
+                navigate("/")
             } else {
 
                 setError(result.message);
@@ -50,20 +43,21 @@ export default function Login(props) {
 
     return (
         <>
-            {
-            }
+            <h2 className="title">Login</h2>
             {error && <h2>{error}</h2>}
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">
-                    Username: <input type="text" name="username" id="username" />
-                </label>
-                <br />
-                <label htmlFor="password">
-                    Password: <input type="password" name="password" id="password" />
-                </label>
-                <br />
-                <Link to="/register">Click here Register</Link>
 
+            <form className="form-container" onSubmit={handleSubmit}>
+                <div className="form">
+                    <label htmlFor="username">
+                        Username: 
+                    </label>
+                    <input type="text" name="username" id="username" />
+                    <label htmlFor="password">
+                        Password: 
+                    </label>
+                    <input type="password" name="password" id="password" />
+                    <Link className="a" to="/register">Click here Register</Link>
+                </div>
                 <button type="submit">Log In</button>
             </form>
         </>

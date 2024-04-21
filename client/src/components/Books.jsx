@@ -20,11 +20,11 @@ export default function Books() {
             <div className="title">Books</div>
             {books.map(book => {
                 return (
-                    <Link key={book.id} className="a" to={`/books/${book.id}`}>
+                    <Link key={book.id} id="book" to={`/books/${book.id}`}>
                         <div className="book">
                             <img src={book.photos} alt={`cover art for ${book.name}`} />
                             <div>
-                                <p>Name: {book.name}</p>
+                                <p>{book.name}</p>
                                 <p>Amount left: {book.inventory}</p>
                             </div>
                             <p>${book.price}</p>

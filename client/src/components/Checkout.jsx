@@ -26,7 +26,7 @@ export default function Checkout() {
     // did it work?
     return (
         <>
-            <h1>Checkout</h1>
+            <h1 className="title">Checkout</h1>
             {cartItems.map((cartItem, i) => {
                 return (
                     <div key={cartItem.id}>
