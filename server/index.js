@@ -235,7 +235,7 @@ app.delete('/api/users/cart/:product_id', isLoggedIn, async (req, res, next) => 
 const init = async () => {
     await client.connect();
     console.log('connected to database');
-    // createTables()
+    createTables()
 
     // console.log('tables created');
     // // createUser({ username: "testerb", password: "Test1234" })

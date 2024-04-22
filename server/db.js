@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS cart_products;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY, 
     name VARCHAR(50),
     username VARCHAR(50),
@@ -20,7 +20,7 @@ CREATE TABLE users(
     password VARCHAR(255),
     admin BOOLEAN DEFAULT false
     );
-  CREATE TABLE products(
+  CREATE TABLE IF NOT EXISTS products(
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
     description VARCHAR(255) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE users(
     price FLOAT NOT NULL,
     inventory NUMERIC
   );
-  CREATE TABLE cart_products(
+  CREATE TABLE IF NOT EXISTS cart_products(
     id UUID DEFAULT gen_random_uuid(),
     product_id INT REFERENCES products(id),
     user_id INT REFERENCES users(id),
@@ -36,7 +36,10 @@ CREATE TABLE users(
     PRIMARY KEY (id)
 );
 
-
+INSERT INTO products (id, name, description, photos, price, inventory) VALUES
+(1, 'SQL: 3 books 1 - The Ultimate Beginner', 'Intermediate & Expert Guides To Master SQL Programming Quickly with Practical Exercises', 'https://m.media-amazon.com/images/I/61IvZ9eG91L._AC_UF1000,1000_QL80_.jpg', 25.69, 2),
+(2, 'React: Quickstart', 'Step-By-Step Guide To Learning React Javascript Library (React.js, Reactjs, Learning React JS, React Javascript, React Programming)', 'https://m.media-amazon.com/images/I/61vg+0-1yGL._AC_UF1000,1000_QL80_.jpg', 13.38, 0),
+(3, 'Beginning JavaScript', 'Covers not just how JavaScript is used in the browser, but how it is used on the server side and with frameworks.', 'https://media.springernature.com/full/springer-static/cover-hires/book/978-1-4842-4395-4', 35.03, 1);
 `
   /*
       SELECT p.name, p.description, cp.amount, p.price
