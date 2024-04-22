@@ -6,7 +6,6 @@ import Checkout from './components/Checkout'
 import Navigation from './components/Navigation';
 import Login from './components/Login';
 import Register from './components/Register';
-import Form from './components/Register';
 import SingleBook from './components/SingleBook';
 import './App.css';
 //import TokenContext from './TokenContext';

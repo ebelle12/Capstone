@@ -5,9 +5,10 @@ import { Link } from "react-router-dom"
 
 export default function Books() {
     const [books, setBooks] = useState([])
+    const API_URL = "https://capstone-rtmh.onrender.com:10000/api";
     useEffect(() => {
         async function fetchBooks() {
-            fetch("http://localhost:3000/api/products")
+            fetch(`${API_URL}/products`)
                 .then(response => response.json())
                 .then(data => setBooks(data))
                 .catch(error => console.log(error))

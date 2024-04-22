@@ -4,7 +4,7 @@
 //         <div>Account</div>
 //     )
 // }
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://capstone-rtmh.onrender.com:10000/api"; //"http://localhost:3000/api";
 import React, { useState, useEffect } from 'react';
 import { TokenContext } from '../App';
 const Account = ({ loggedInUserId }) => {
