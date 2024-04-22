@@ -1,5 +1,5 @@
 const pg = require('pg');
-const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/the_eva_store_db');
+const client = new pg.Client(process.env.DATABASE_URL || 'postgres://the_eva_store_user:YrRgK3HBuzG0lyMplQUAV6NVG8EKPpdM@dpg-coiqq5ljm4es739t4klg-a.oregon-postgres.render.com/the_eva_store'); //'postgres://localhost/the_eva_store_db');
 const uuid = require('uuid');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
