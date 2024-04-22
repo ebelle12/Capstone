@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 export default function Checkout() {
     const [cartItems, setCartItems] = useState([])
     // const API_URL = "http://localhost:3000/api"
-    const API_URL = "https://capstone-rtmh.onrender.com:10000/api";
+    const API_URL = "https://capstone-rtmh.onrender.com/api";
 
     useEffect(() => {
         async function getCartItems() {

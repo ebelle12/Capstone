@@ -6,7 +6,7 @@ export default function SingleBook(props) {
     const [amount, setAmount] = useState({ "amount": 1 })
     const { bookId } = useParams()
     // const API_URL = "http://localhost:3000/api"
-    const API_URL = "https://capstone-rtmh.onrender.com:10000/api";
+    const API_URL = "https://capstone-rtmh.onrender.com/api";
     const [book, setBook] = useState({})
 
     useEffect(() => {

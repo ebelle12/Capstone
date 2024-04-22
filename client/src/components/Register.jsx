@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 //const API_URL = "http://localhost:3000/api";
-const API_URL = "https://capstone-rtmh.onrender.com:10000/api";
+const API_URL = "https://capstone-rtmh.onrender.com/api";
 export default function Register() {
     const [formData, setFormData] = useState({
         username: '',
